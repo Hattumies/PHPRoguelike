@@ -57,16 +57,18 @@ function makeRoom($dungeon_area) {
 
 /* ******************************* */
 
-// Function to ensure that generated rooms don´t overlap.
-function doesOverlap($corner_x, $corner_y, $dungeon_area, $width, $height) {
-    $overlap = true;
-
-    for ($index = 0; $index < $height; $index++) {
-        for ($j = 0; $j < $width; $j++) {
-            
+    /*
+     * Cheks if there is already a room in the current location.
+     */
+    function checkRoomPlacement($x0, $y0, $x1, $y1, $map) {
+         for($i = $y0;$i < $y1 + 1;$i++) {
+            for($j = $x0; $j < $x1 + 1;$j++) {
+                if($map[$i][$j] == ".") {
+                    return false;
+                }
+            }
         }
     }
-}
 
 /* ******************************* */
 
@@ -77,9 +79,6 @@ function makeMap($width, $height) {
     
     printMap($dungeon_map);
 }
-
-
-
 ?>
 
 <html>
@@ -89,9 +88,14 @@ function makeMap($width, $height) {
     </head>
     <body>
 <?php
-//    $dungeon = dungeonArea(20, 30);
-//    printMap($dungeon);
+
+    printMap($dungeon);
     makeMap(20, 30);
+
+
+//$dungeon = createEmptyMap();
+//$map = createRoom($dungeon);
+//printMap($map);
 ?>
     </body>
 </html>
