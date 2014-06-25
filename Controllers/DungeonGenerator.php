@@ -1,6 +1,7 @@
 <?php
 include 'RandomGenerators.php';
 include 'Misc.php';
+include 'Room.php';
 
 /**
  * Description of DungeonGenerator
@@ -8,6 +9,9 @@ include 'Misc.php';
  * @author Teemu Matvejeff
  */
 /* ******************************* */
+class DungeonGenerator {
+   
+
 // Define the borders of dungeon.
 function dungeonArea($width, $height) {
     $dungeon_area = array();
@@ -16,7 +20,7 @@ function dungeonArea($width, $height) {
     for ($index = 0; $index < $height; $index++) {
         $row = array();
         for ($j = 0; $j < $width; $j++) {
-            $row[$j] = "X";
+            $row[$j] = "#";
         }
         $dungeon_area[$index] = $row;
     }
@@ -28,7 +32,6 @@ function dungeonArea($width, $height) {
 
 // Fuction to draw room to the dungeon map.
 function makeRoom($dungeon_area) {
-    
     //Room starting point.
     $room_coordinates = roomPosition(1, 1);
     
@@ -48,7 +51,7 @@ function makeRoom($dungeon_area) {
     // Draw the room to defined Dungeon area.
     for ($index = $room_y0; $index <= $room_y1; $index++) {
         for ($j = $room_x0; $j <= $room_x1; $j++) {
-            $dungeon_area[$index][$j] = "0";
+            $dungeon_area[$index][$j] = ".";
         }
     }
 
@@ -78,6 +81,8 @@ function makeMap($width, $height) {
     $dungeon_map = makeRoom($dungeon_area); //Draw the room to the map.
     
     printMap($dungeon_map);
+}
+
 }
 ?>
 
