@@ -26,7 +26,7 @@ class Floor {
         self::$width = $width;
         self::$length = $length;
         self::$map = map;
-        self::$rooms = array();
+        self::$rooms[] = array();
    }
    
    /*
@@ -44,13 +44,12 @@ class Floor {
    }
    
    /*
-    * Merge sort to sort rooms according to theis coordinate on the x-axis
+    * Merge sort to sort rooms according to theis coordinate on the x-axis.
+    * This is used to sort the rooms according to their distance. First the 
+    * Rooms are sorted by their x-coordinate and then the y-coordinate.
     * 
-    * THIS SHIT AINT WORKING!
-    * PHP won't allowe to typecast object taken from the array to be instances of the Room.php class.
-    * This makes it impossible to use the classes own variables as the comparison key when sorting.
     */
-   function roomMergeSort(&$array) {
+   function roomMergeSortX(&$array) {
        $half = sizeof($array) / 2;
        if($half < 2) {
            return;
@@ -58,8 +57,8 @@ class Floor {
        $array1 = array_slice($array, 0, $half);
        $array2 = array_slice($array, $half);
        
-       roomMergeSort($array1);
-       roomMergeSort($array2);
+       roomMergeSortX($array1);
+       roomMergeSortX($array2);
        
        if(end($array1) < $array2[0]) {
            $array = array_merge($array1, $array2);
@@ -69,7 +68,7 @@ class Floor {
        $index1 = $index2 = 0;
        while($index1 < sizeof($array1) && $index2 < sizeof($array2)) {
            //$room1 = (Room)$array1[$index1];
-           if($array1[$index1] < $array2[$index2]) {
+           if($array1[$index1]->getCoordX() < $array2[$index2]->getCoordX()) {
                $array[] = $array1[$index1++];
            } else {
                $array[] = $array2[$index2++];
@@ -79,6 +78,41 @@ class Floor {
        while($index1 < sizeof($array1)) { $array[] = $array1[$index1++]; }
        while($index2 < sizeof($array2)) { $array[] = $array2[$index2++]; }
        
+   }
+   
+   /*
+    * Function to merge sort rooms according to their coordinate on the y-axis.
+    * 
+    * Mostly copy paste code, but can't figure out a better way to do this.
+    */
+    function roomMergeSortY(&$array) {
+       $half = sizeof($array) / 2;
+       if($half < 2) {
+           return;
+       }
+       $array1 = array_slice($array, 0, $half);
+       $array2 = array_slice($array, $half);
+       
+       roomMergeSortY($array1);
+       roomMergeSortY($array2);
+       
+       if(end($array1) < $array2[0]) {
+           $array = array_merge($array1, $array2);
+       }
+       
+       $array = array();
+       $index1 = $index2 = 0;
+       while($index1 < sizeof($array1) && $index2 < sizeof($array2)) {
+           //$room1 = (Room)$array1[$index1];
+           if($array1[$index1]->getCoordY() < $array2[$index2]->getCoordY()) {
+               $array[] = $array1[$index1++];
+           } else {
+               $array[] = $array2[$index2++];
+           }
+       }
+       
+       while($index1 < sizeof($array1)) { $array[] = $array1[$index1++]; }
+       while($index2 < sizeof($array2)) { $array[] = $array2[$index2++]; } 
    }
    
    public static function getMap() {
