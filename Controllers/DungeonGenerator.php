@@ -1,13 +1,21 @@
 <?php
 include 'RandomGenerators.php';
 include 'Misc.php';
+include 'Room.php';
 
 /**
  * Description of DungeonGenerator
  *
  * @author Teemu Matvejeff
  */
+<<<<<<< HEAD
 /* * ****************************** */
+=======
+/* ******************************* */
+class DungeonGenerator {
+   
+
+>>>>>>> 8a6b618b11db64d13dd97efbb6e0794b7375e718
 // Define the borders of dungeon.
 function dungeonArea($width, $height) {
     $dungeon_area = array();
@@ -26,6 +34,7 @@ function dungeonArea($width, $height) {
 
 /* * ****************************** */
 
+<<<<<<< HEAD
 // Method, which draws the room to the Dungeon area-map.
 function drawRoom($x0, $y0, $x1, $y1, $dungeon_area) {
     // Draw the room to defined Dungeon area.
@@ -49,6 +58,10 @@ function makeRoom($dungeon_area) {
     $room_y0 = 0;
     $room_y1 = 0;
 
+=======
+// Fuction to draw room to the dungeon map.
+function makeRoom($dungeon_area) {
+>>>>>>> 8a6b618b11db64d13dd97efbb6e0794b7375e718
     //Room starting point.
     $room_coordinates = roomPosition($dungeon_area);
 
@@ -61,12 +74,19 @@ function makeRoom($dungeon_area) {
     $room_y0 = $room_coordinates[1];
     $room_y1 = $room_coordinates[1] + $room_area[1];
 
+<<<<<<< HEAD
     $outofBounds = checkOutOfBound($room_coordinates, $room_area, $dungeon_area);
 
     if ($outofBounds == false) {
         $isOverlap = checkRoomPlacement($room_x0, $room_y0, $room_x1, $room_y1, $dungeon_area);
         if ($isOverlap == false) {
             $dungeon_area = drawRoom($room_x0, $room_y0, $room_x1, $room_y1, $dungeon_area);
+=======
+    // Draw the room to defined Dungeon area.
+    for ($index = $room_y0; $index <= $room_y1; $index++) {
+        for ($j = $room_x0; $j <= $room_x1; $j++) {
+            $dungeon_area[$index][$j] = ".";
+>>>>>>> 8a6b618b11db64d13dd97efbb6e0794b7375e718
         }
     }
 
@@ -127,6 +147,10 @@ function makeMap($width, $height) {
     printMap($dungeon_area);
 }
 
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 8a6b618b11db64d13dd97efbb6e0794b7375e718
 ?>
 
 <html>
