@@ -14,15 +14,58 @@
  * 
  */
 class Room {
-    var $length;
-    var $width;
-    var $door;
-    var $coord;
+    private static $length;
+    private static $width;
+    private static $door;
+    private static $coordX;
+    private static $coordY;
     
     function Room($width, $length, $coord) {
         self::$width = $width;
         self::$length = $length;
         self::$coord = $coord;
-        self::$door = false;
+        self::$door = 0;
     }
+    
+    public static function getLength() {
+        return self::$length;
+    }
+
+    public static function getWidth() {
+        return self::$width;
+    }
+
+    public static function getDoor() {
+        return self::$door;
+    }
+
+    public static function getCoordX() {
+        return self::$coordX;
+    }
+
+    public static function getCoordY() {
+        return self::$coordY;
+    }
+
+    public static function setLength($length) {
+        self::$length = $length;
+    }
+
+    public static function setWidth($width) {
+        self::$width = $width;
+    }
+
+    public static function setDoor($door) {
+        self::$door = $door;
+    }
+
+    public static function setCoordX($coordX) {
+        self::$coordX = $coordX;
+    }
+
+    public static function setCoordY($coordY) {
+        self::$coordY = $coordY;
+    }
+
+
 }
