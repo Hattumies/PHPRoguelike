@@ -7,7 +7,7 @@
 /***************************************/
 
 
-//Function to print dungeon map.
+//Function to print dungeon map as well as printing 2+-D arrays.
 function printMap(&$dungeon_map) {
     $height = count($dungeon_map);
     $width = count($dungeon_map[0]);
@@ -18,7 +18,17 @@ function printMap(&$dungeon_map) {
             $mark = $dungeon_map[$index][$j];
             $rivi = $rivi . $mark;
         }
-        print $rivi . "<BR>";
+        print $rivi."<br>";
+    }
+}
+
+// 1-D Array printing function for testing purposes.
+function printArray(&$array) {
+    $size = count($array);
+    
+    for ($index = 0; $index < $size; $index++) {
+        $number = $array[$index];
+        print $number."<br>";
     }
 }
 

@@ -6,30 +6,38 @@
 
 /* * ************************************ */
 
-function roomPosition($max_x, $max_y) {
+function roomPosition($dungeon_area) {
     $coordinates = array();
-    $max_x = 5;
-    $max_y = 5;
-//        $max_x = $width;
-//        $max_y = $height;
+    $width = count($dungeon_area[0]);
+    $height = count($dungeon_area);
 
-    $coordinates[] = rand(1, $max_x - 1);
-    $coordinates[] = rand(1, $max_y - 1);
+    $max_x = $width - 1;
+    $max_y = $height - 1;
+
+    $coordinates[] = rand(1, $max_x);
+    $coordinates[] = rand(1, $max_y);
 
     return $coordinates;
 }
 
-
 // Function that defines the dimensions of to-be-created room.
 function roomArea($dungeon_area) {
     $room_area = array();
-    $max_x = 8;
-    $max_y = 5;
+    $max_x = 6;
+    $max_y = 6;
 
     $room_area[] = rand(2, $max_x);
     $room_area[] = rand(2, $max_y);
 
+
     return $room_area;
+}
+
+// A function to decide how many rooms Dungeon has.
+function roomCount() {
+    $rooms = rand(3, 5);
+
+    return $rooms;
 }
 ?>
 
