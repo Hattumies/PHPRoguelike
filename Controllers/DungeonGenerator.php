@@ -12,7 +12,6 @@ include 'Room.php';
 /* * ****************************** */
 
 /* ******************************* */
-class DungeonGenerator {
    
 
 
@@ -152,7 +151,6 @@ function makeMap($width, $height) {
 
 
 
-}
 
 ?>
 
