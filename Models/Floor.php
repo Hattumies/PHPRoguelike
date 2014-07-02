@@ -1,5 +1,5 @@
 <?php
-include 'Roonm.php';
+//include 'Room.php'; 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,7 +25,7 @@ class Floor {
     function Floor($width, $length, $map) {
         self::$width = $width;
         self::$length = $length;
-        self::$map = map;
+        self::$map = $map;      // TARTKOITUKS OLI VARMAAN $map EIKÄ map?
         self::$rooms[] = array();
    }
    
@@ -33,7 +33,9 @@ class Floor {
     * Add a room to the floor.
     */
    function addRoom($room) {
-       $rooms[sizeof($rooms)] = $room;
+       global $rooms;
+       
+       $rooms[] = $room;
    }
    
    /*
