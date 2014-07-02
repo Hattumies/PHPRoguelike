@@ -20,10 +20,11 @@ class Room {
     private static $coordX;
     private static $coordY;
     
-    function Room($width, $length, $coord) {
+    function Room($width, $length, $coordX, $coordY) {
         self::$width = $width;
         self::$length = $length;
-        self::$coord = $coord;
+        self::$coordX = $coordX;
+        self::$coordY = $coordY;
         self::$door = 0;
     }
     
@@ -67,5 +68,6 @@ class Room {
         self::$coordY = $coordY;
     }
 
+    
 
 }

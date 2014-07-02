@@ -40,7 +40,8 @@ class Floor {
     * Sorts the rooms according to their coordinates.
     */
    function sortRooms() {
-       sort($rooms);
+       roomMergeSortX($rooms);
+       roomMergeSortY($rooms);
    }
    
    /*
@@ -115,6 +116,7 @@ class Floor {
        while($index2 < sizeof($array2)) { $array[] = $array2[$index2++]; } 
    }
    
+   
    public static function getMap() {
        return self::$map;
    }
@@ -164,4 +166,6 @@ class Floor {
    }
 
 
+   
+   
 }
