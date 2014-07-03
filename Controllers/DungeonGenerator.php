@@ -1,7 +1,7 @@
 <?php
 include 'RandomGenerators.php';
 include 'Misc.php';
-include 'Room.php';
+include '../Models/Room.php';
 
 /**
  * Description of DungeonGenerator

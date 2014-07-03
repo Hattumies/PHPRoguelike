@@ -1,5 +1,5 @@
 <?php
-//include 'Room.php'; 
+include 'Room.php'; 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,8 +34,7 @@ class Floor {
     */
    function addRoom($room) {
        global $rooms;
-       
-       $rooms[] = $room;
+       $rooms[sizeof($rooms)] = $room;
    }
    
    /*
@@ -165,6 +164,11 @@ class Floor {
 
    public static function setNext($next) {
        self::$next = $next;
+   }
+   
+   public function annaKoko() {
+       global $rooms;
+       echo sizeof($rooms);
    }
 
 
