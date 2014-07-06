@@ -20,7 +20,7 @@ class Room {
     private static $coordX;
     private static $coordY;
     
-    function _constructor($width, $length, $coordX, $coordY) {
+    function Room($width, $length, $coordX, $coordY) {
         self::$width = $width;
         self::$length = $length;
         self::$coordX = $coordX;

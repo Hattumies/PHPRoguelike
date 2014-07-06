@@ -25,14 +25,14 @@ class Floor {
     function Floor($width, $length, $map) {
         self::$width = $width;
         self::$length = $length;
-        self::$map = $map;      // TARTKOITUKS OLI VARMAAN $map EIKÄ map?
+        self::$map = $map;      
         self::$rooms[] = array();
    }
    
    /*
     * Add a room to the floor.
     */
-   function addRoom($room) {
+   function addRoom(Room $room) {
        global $rooms;
        $rooms[sizeof($rooms)] = $room;
    }

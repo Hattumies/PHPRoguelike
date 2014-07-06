@@ -12,11 +12,14 @@ include '../Models/Floor.php';
  * @author Ilmu
  */
 $floor = new Floor(40, 30, array());
-$floor->addRoom(new Room(1, 1, 1, 1));
+$huone0 = new Room(1,1,1,1);
+$floor->addRoom($huone0);
 $floor->addRoom(new Room(1, 1, 4, 4));
 $floor->addRoom(new Room(1, 1, 3, 5));
 $floor->addRoom(new Room(1, 1, 10, 5));
 $floor->addRoom(new Room(1, 1, 10, 3));
-//print $floor->getLength();
-$floor->annaKoko();
+
+//$floor->annaKoko();
+var_dump(get_object_vars($floor));
+
 ?>
