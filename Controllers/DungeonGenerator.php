@@ -101,8 +101,8 @@ function makeRoom($dungeon_area) {
 // Check if room is completely inside Dungeon area.
 function checkOutOfBound($room_coordinates, $room_area, $dungeon_area) {
     // Calculations for Dungeon size.
-    $dungeon_max_X = count($dungeon_area[0]);
-    $dungeon_max_Y = count($dungeon_area);
+    $dungeon_max_X = count($dungeon_area[0])-1;
+    $dungeon_max_Y = count($dungeon_area)-1;
 
     // Calculations for room end point coordinates
     $room_end_X = $room_coordinates[0] + $room_area[0];
@@ -110,10 +110,10 @@ function checkOutOfBound($room_coordinates, $room_area, $dungeon_area) {
 
     // Check if room is partially outside of Dungeon area.
     // If outside, return true, else return false.
-    if ($room_end_X >= $dungeon_max_X || $room_end_Y >= $dungeon_max_Y) {
-        return true;
-    } else {
+    if (!($room_end_X >= $dungeon_max_X) && !($room_end_Y >= $dungeon_max_Y)) {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -126,7 +126,7 @@ function checkRoomPlacement($x0, $y0, $x1, $y1, $map) {
     
     for ($i = $y0; $i < $y1+1; $i++) {
         for ($j = $x0; $j < $x1+1; $j++) {
-            if ($map[$i][$j] == ".") {
+            if ($map[$i][$j] === "0") {
                 return true;
             }
         }
@@ -161,7 +161,7 @@ function makeMap($width, $height) {
     </head>
     <body>
         <?php
-        makeMap(20, 30);
+        makeMap(50, 100);
         
 
         ?>

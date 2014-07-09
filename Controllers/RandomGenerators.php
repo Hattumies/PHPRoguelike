@@ -23,11 +23,13 @@ function roomPosition($dungeon_area) {
 // Function that defines the dimensions of to-be-created room.
 function roomArea($dungeon_area) {
     $room_area = array();
-    $max_x = 6;
-    $max_y = 6;
+    
+    //Size of the room could be scaled in respect to the size of the dungeon area...
+    $max_x = 12;
+    $max_y = 8;
 
-    $room_area[] = rand(2, $max_x);
-    $room_area[] = rand(2, $max_y);
+    $room_area[] = rand(5, $max_x);
+    $room_area[] = rand(5, $max_y);
 
 
     return $room_area;
@@ -35,7 +37,7 @@ function roomArea($dungeon_area) {
 
 // A function to decide how many rooms Dungeon has.
 function roomCount() {
-    $rooms = rand(3, 5);
+    $rooms = rand(5, 12);
 
     return $rooms;
 }
