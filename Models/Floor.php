@@ -12,28 +12,27 @@ include 'Room.php';
  * @author Ilmu
  */
 class Floor {
-    private static $map;
-    private static $rooms;
-    private static $width;
-    private static $length;
-    private static $previous;
-    private static $next;
+    private  $map;
+    private  $rooms;
+    private  $width;
+    private  $length;
+    private  $previous;
+    private  $next;
     
     /*
      * The constructor.
      */
     function Floor($width, $length, $map) {
-        self::$width = $width;
-        self::$length = $length;
-        self::$map = $map;      
-        self::$rooms[] = array();
+        $this->width = $width;
+        $this->length = $length;
+        $this->map = $map;      
    }
    
    /*
     * Add a room to the floor.
     */
    function addRoom(Room $room) {
-       global $rooms;
+       $rooms = &$this->rooms;
        $rooms[sizeof($rooms)] = $room;
    }
    
@@ -118,57 +117,57 @@ class Floor {
    }
    
    
-   public static function getMap() {
-       return self::$map;
+   public function getMap() {
+       return $this->map;
    }
 
-   public static function getRooms() {
-       return self::$rooms;
+   public function getRooms() {
+       return $this->rooms;
    }
 
-   public static function getWidth() {
-       return self::$width;
+   public function getWidth() {
+       return $this->width;
    }
 
-   public static function getLength() {
-       return self::$length;
+   public function getLength() {
+       return $this->length;
    }
 
-   public static function getPrevious() {
-       return self::$previous;
+   public function getPrevious() {
+       return $this->previous;
    }
 
-   public static function getNext() {
-       return self::$next;
+   public function getNext() {
+       return $this->next;
    }
 
-   public static function setMap($map) {
-       self::$map = $map;
+   public function setMap($map) {
+       $this->map = $map;
    }
 
-   public static function setRooms($rooms) {
-       self::$rooms = $rooms;
+   public function setRooms($rooms) {
+       $this->rooms = $rooms;
    }
 
-   public static function setWidth($width) {
-       self::$width = $width;
+   public function setWidth($width) {
+       $this->width = $width;
    }
 
-   public static function setLength($length) {
-       self::$length = $length;
+   public function setLength($length) {
+       $this->length = $length;
    }
 
-   public static function setPrevious($previous) {
-       self::$previous = $previous;
+   public function setPrevious($previous) {
+       $this->previous = $previous;
    }
 
-   public static function setNext($next) {
-       self::$next = $next;
+   public function setNext($next) {
+       $this->next = $next;
    }
-   
+
+      
    public function annaKoko() {
-       global $rooms;
-       echo sizeof($rooms);
+       echo sizeof($this->rooms);
    }
 
 
