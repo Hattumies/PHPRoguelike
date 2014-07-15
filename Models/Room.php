@@ -17,15 +17,29 @@ class Room {
     private  $length;
     private  $width;
     private  $door;
+    private  $doors;
     private  $coordX;
     private  $coordY;
     
+    /*
+     * The constructor. Takes the width and the length of the room and the x- and y-coordinates
+     * of the rooms upper left corner as arguments.
+     */
     function Room($width, $length, $coordX, $coordY) {
         $this->width = $width;
         $this->length = $length;
         $this->coordX = $coordX;
         $this->coordY = $coordY;
+        $this->doors = array();
         $this->door = 0;
+    }
+    
+    /*
+     * Adds a door to the array $doors.
+     */
+    public function addDoor(Door $door) {
+        $allDoors = &$this->doors;
+        $allDoors[sizeof($allDoors)] = $door;
     }
     
     public function getLength() {
