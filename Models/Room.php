@@ -42,37 +42,45 @@ class Room {
         $allDoors[sizeof($allDoors)] = $door;
     }
     
+    // Return room length
     public function getLength() {
         return $this->length;
     }
 
+    // Return room width
     public function getWidth() {
         return $this->width;
     }
 
 
 
+    // Return X-coordinate that is used to define room placement in the map
     public function getCoordX() {
         return $this->coordX;
     }
 
+    // Return Y-coordinate that is used to define room placement in the map
     public function getCoordY() {
         return $this->coordY;
     }
 
+    // Set room length (X-axis)
     public function setLength($length) {
         $this->length = $length;
     }
 
+    // Set room width (Y-axis)
     public function setWidth($width) {
         $this->width = $width;
     }
 
 
+    // Set X-coordinate that is used to define room placement in the map
     public function setCoordX($coordX) {
         $this->coordX = $coordX;
     }
 
+    // Set Y-coordinate that is used to define room placement in the map
     public function setCoordY($coordY) {
         $this->coordY = $coordY;
     }

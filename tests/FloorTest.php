@@ -19,8 +19,18 @@ $floor->addRoom(new Room(1, 1, 3, 5));
 $floor->addRoom(new Room(1, 1, 10, 5));
 $floor->addRoom(new Room(1, 1, 10, 3));
 
-$floor->annaKoko();
-echo sizeof($floor->getRooms());
+
+//Oma koodi alkaa
+$floor->sortRooms();
+$huoneet = $floor->getRooms();
+
+$y = $huoneet[4]->getCoordY();
+echo $y;
+//Oma koodi loppuu
+
+
+//$floor->annaKoko();
+//echo sizeof($floor->getRooms());
 //var_dump(get_object_vars($floor));
 
 ?>
