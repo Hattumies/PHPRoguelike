@@ -25,7 +25,7 @@ class Room {
      * The constructor. Takes the width and the length of the room and the x- and y-coordinates
      * of the rooms upper left corner as arguments.
      */
-    function Room($width, $length, $coordX, $coordY) {
+    function Room($coordX, $coordY, $length, $width) {
         $this->width = $width;
         $this->length = $length;
         $this->coordX = $coordX;
@@ -42,6 +42,28 @@ class Room {
         $allDoors[sizeof($allDoors)] = $door;
     }
     
+    // Method, which draws the room to the Dungeon area-map.
+    public function drawRoom(&$dungeon_floor) {
+        global $coordX;
+        global $coordY;
+        global $length;
+        global $width;
+        
+        $x0 = $coordX;
+        $y0 = $coordY;
+        $x1 = $coordX + $length;
+        $y1 = $coordY + $width;
+        
+    // Draw the room to defined Dungeon area.
+    for ($index = $y0; $index <= $y1; $index++) {
+        for ($j = $x0; $j <= $x1; $j++) {
+            $dungeon_floor[$index][$j] = "0";
+        }
+    }
+    
+    return $dungeon_floor;
+}
+
     // Return room length
     public function getLength() {
         return $this->length;

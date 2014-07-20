@@ -25,11 +25,11 @@ function roomArea($dungeon_area) {
     $room_area = array();
     
     //Size of the room could be scaled in respect to the size of the dungeon area...
-    $max_x = 12;
-    $max_y = 8;
+    $max_length = 12;
+    $max_width = 8;
 
-    $room_area[] = rand(5, $max_x);
-    $room_area[] = rand(5, $max_y);
+    $room_area[] = rand(5, $max_length);
+    $room_area[] = rand(5, $max_width);
 
 
     return $room_area;

@@ -14,7 +14,7 @@ include 'Room.php';
  */
 class Floor {
 
-    private $map;
+    private $floor_map;
     private $rooms;
     private $width;
     private $length;
@@ -25,10 +25,47 @@ class Floor {
      * The constructor.
      */
 
-    function Floor($width, $length, $map) {
+    function Floor($width, $length) {
         $this->width = $width;
         $this->length = $length;
-        $this->map = $map;
+        $this->floor_map = $this->dungeonFloor($length, $width);
+    }
+
+    // Define and create floor blueprint.
+    function dungeonFloor($width, $height) {
+        $dungeon_area = array();
+
+        // Code segment to generate Dungeon area.
+        for ($index = 0; $index < $height; $index++) {
+            $row = array();
+            for ($j = 0; $j < $width; $j++) {
+                $row[$j] = "#";
+            }
+            $dungeon_area[$index] = $row;
+        }
+
+        return $dungeon_area;
+    }
+
+    /*
+     * Method, which draws the room to the floor.
+     */
+
+    function drawRoom(Room $room, $floor_map) {
+        $x0 = $room->getCoordX();
+        $y0 = $room->getCoordY();
+        $x1 = $room->getCoordX() + $room->getLength();
+        $y1 = $room->getCoordY() + $room->getWidth();
+        
+
+
+        // Draw the room to floor map.
+        for ($index = $y0; $index <= $y1; $index++) {
+            for ($j = $x0; $j <= $x1; $j++) {
+                $floor_map[$index][$j] = "0";
+            }
+        }
+        $this->setMap($floor_map);
     }
 
     /*
@@ -40,9 +77,45 @@ class Floor {
         $rooms[sizeof($rooms)] = $room;
     }
 
+    
+    /*
+     *  Fuction to define and draw room to the dungeon map.
+     */
+    
+    function defineRoom($floor_map) {
+
+        //Room starting point.
+        $room_coordinates = roomPosition($floor_map);
+
+        //Room dimensions in a table.
+        $room_area = roomArea($floor_map);
+
+        //Room star and ending points.
+        $x0 = $room_coordinates[0];
+        $x1 = $room_coordinates[0] + $room_area[0];
+        $y0 = $room_coordinates[1];
+        $y1 = $room_coordinates[1] + $room_area[1];
+        $length = $x1-$x0;
+        $width = $y1-$y0;
+
+
+        $outofBounds = checkOutOfBound($room_coordinates, $room_area, $floor_map);
+
+        if ($outofBounds === false) {
+            $isOverlap = checkRoomPlacement($x0, $y0, $x1, $y1, $floor_map);
+            if ($isOverlap === false) {
+                $room = new Room($x0, $y0, $length, $width);
+                $this->addRoom($room);
+                $this->drawRoom($room, $floor_map);
+            }
+        }
+
+    }
+        
     /*
      * Sorts the rooms according to their coordinates.
      */
+
     function sortRooms() {
         global $rooms;
         if (count($rooms) > 1) {
@@ -133,7 +206,7 @@ class Floor {
     }
 
     public function getMap() {
-        return $this->map;
+        return $this->floor_map;
     }
 
     public function getRooms() {
@@ -157,7 +230,7 @@ class Floor {
     }
 
     public function setMap($map) {
-        $this->map = $map;
+        $this->floor_map = $map;
     }
 
     public function setRooms($rooms) {
