@@ -84,17 +84,19 @@ class Floor {
     
     function defineRoom($floor_map) {
 
-        //Room starting point.
+        // Room starting point.
         $room_coordinates = roomPosition($floor_map);
 
-        //Room dimensions in a table.
+        // Room dimensions in a table.
         $room_area = roomArea($floor_map);
 
-        //Room star and ending points.
+        // Room star and ending points.
         $x0 = $room_coordinates[0];
         $x1 = $room_coordinates[0] + $room_area[0];
         $y0 = $room_coordinates[1];
         $y1 = $room_coordinates[1] + $room_area[1];
+        
+        // Room length and width.
         $length = $x1-$x0;
         $width = $y1-$y0;
 
@@ -105,6 +107,8 @@ class Floor {
             $isOverlap = checkRoomPlacement($x0, $y0, $x1, $y1, $floor_map);
             if ($isOverlap === false) {
                 $room = new Room($x0, $y0, $length, $width);
+             //   $door_count = doorCount();      // Number of doors to be added.
+                
                 $this->addRoom($room);
                 $this->drawRoom($room, $floor_map);
             }

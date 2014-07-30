@@ -5,9 +5,9 @@
         <group>
             <file>file:/C:/xampp/htdocs/Roguelike/Models/Room.php</file>
             <file>file:/C:/xampp/htdocs/Roguelike/Models/Door.php</file>
-            <file>file:/C:/xampp/htdocs/Roguelike/tests/FloorTest.php</file>
             <file>file:/C:/xampp/htdocs/Roguelike/Controllers/DungeonGenerator.php</file>
             <file>file:/C:/xampp/htdocs/Roguelike/Models/Floor.php</file>
+            <file>file:/C:/xampp/htdocs/Roguelike/Controllers/RandomGenerators.php</file>
             <file>file:/C:/xampp/htdocs/Roguelike/Controllers/Misc.php</file>
         </group>
     </open-files>

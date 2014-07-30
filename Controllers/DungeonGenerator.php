@@ -13,73 +13,6 @@ include '../Models/Floor.php';
 
 /* * ****************************** */
 
-// Define the borders of dungeon.
-    function dungeonArea($width, $height) {
-        $dungeon_area = array();
-
-        // Code segment to generate Dungeon area.
-        for ($index = 0; $index < $height; $index++) {
-            $row = array();
-            for ($j = 0; $j < $width; $j++) {
-                $row[$j] = "#";
-            }
-            $dungeon_area[$index] = $row;
-        }
-
-        return $dungeon_area;
-    }
-
-    /*     * ****************************** */
-
-// Method, which draws the room to the Dungeon area-map.
-    function drawRoom($x0, $y0, $x1, $y1, $dungeon_area) {
-        // Draw the room to defined Dungeon area.
-        for ($index = $y0; $index <= $y1; $index++) {
-            for ($j = $x0; $j <= $x1; $j++) {
-                $dungeon_area[$index][$j] = "0";
-            }
-        }
-
-        return $dungeon_area;
-    }
-
-    /*     * ****************************** */
-
-// Fuction to define room to the dungeon map.
-    function defineRoom($dungeon_area) {
-
-        //Room starting point.
-        $room_coordinates = roomPosition($dungeon_area);
-
-        //Room dimensions in a table.
-        $room_area = roomArea($dungeon_area);
-
-        //Room star and ending points.
-        $room_x0 = $room_coordinates[0];
-        $room_x1 = $room_coordinates[0] + $room_area[0];
-        $room_y0 = $room_coordinates[1];
-        $room_y1 = $room_coordinates[1] + $room_area[1];
-
-
-        $outofBounds = checkOutOfBound($room_coordinates, $room_area, $dungeon_area);
-
-        if ($outofBounds == false) {
-            $isOverlap = checkRoomPlacement($room_x0, $room_y0, $room_x1, $room_y1, $dungeon_area);
-            if ($isOverlap == false) {
-                $dungeon_area = drawRoom($room_x0, $room_y0, $room_x1, $room_y1, $dungeon_area);
-            }
-        }
-
-        // Draw the room to defined Dungeon area.
-        for ($index = $room_y0; $index <= $room_y1; $index++) {
-            for ($j = $room_x0; $j <= $room_x1; $j++) {
-                $dungeon_area[$index][$j] = ".";
-            }
-        }
-
-
-        return $dungeon_area;
-    }
 
     /*     * ****************************** */
 
@@ -133,7 +66,7 @@ include '../Models/Floor.php';
         
         $dungeon_floor = $floor->getMap();
         
-        //TEE SEURAAVAKSI HUONEIDEN LUONTI JA PIIRTÄMINEN KARTTAA VALMIIKSI!!!
+        
         for ($indeksi = 0; $indeksi < $room_count; $indeksi++) {
             $floor->defineRoom($dungeon_floor);
             $dungeon_floor = $floor->getMap();
@@ -153,7 +86,7 @@ include '../Models/Floor.php';
     </head>
     <body>
 <?php
-    makeMap(50, 100);
+    makeMap(100, 200);
 ?>
     </body>
 </html>
