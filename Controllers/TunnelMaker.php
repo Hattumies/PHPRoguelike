@@ -15,12 +15,20 @@ include 'Floor.php';
 class TunnelMaker {
     
     
-    public function connect(Door $door1, Door $door2) {
+   public function connectDoors(Door $door1, Door $door2, $map) {
         $currentX = $door1->getCoordX();
         $currentY = $door1->getCoordY();
-        $coordX2 = $door2->getCoordX();
-        $coordY2 = $door2->getCoordY();
+        $coordX = $door2->getCoordX();
+        $coordY = $door2->getCoordY();
         
-        
+        while($currentX != $coordX || $currentY != $coordY ) {
+            tunnel($currentX, $currentY, $coordX, $coordY);
+        }
+    }
+    
+    public function tunnel($currentX, $currentY, $destinationX, $destinationY, $map) {
+        if($currentX < $destinationX && strcmp($map[$currentY][$currentX + 1], "|") != 0) {
+            
+        }
     }
 }

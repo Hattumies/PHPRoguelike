@@ -208,6 +208,8 @@ class Floor {
             $array[] = $array2[$index2++];
         }
     }
+    
+    
 
     public function getMap() {
         return $this->floor_map;
