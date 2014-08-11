@@ -62,7 +62,7 @@ class Floor {
         // Draw the room to floor map.
         for ($index = $y0; $index <= $y1; $index++) {
             for ($j = $x0; $j <= $x1; $j++) {
-                $floor_map[$index][$j] = "0";
+                $floor_map[$index][$j] = ".";
             }
         }
         $this->setMap($floor_map);

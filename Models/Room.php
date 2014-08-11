@@ -165,10 +165,10 @@ class Room {
         // Draw the room to defined Dungeon area.
         for ($index = $y0; $index <= $y1; $index++) {
             for ($j = $x0; $j <= $x1; $j++) {
-                $dungeon_floor[$index][$j] = "0";
+                $dungeon_floor[$index][$j] = ".";
             }
         }
-
+        
         $this->createDoor();
 
         $doors = $this->doors;
