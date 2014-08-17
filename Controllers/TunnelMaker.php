@@ -53,7 +53,11 @@ class TunnelMaker {
         }
     }
 
-    //Ei tarkista seiniä jos tulee vastaan!!!
+    /*
+     * This function is used by the tunnel function when tunnel function hits into a wall.
+     * GoAround() goes around the wall in the direction given by the $direction parameter.
+     * +X and -X for rigth and left and +Y and -Y for up and down.
+     */
     public function goAround(&$currentX, &$currentY, $direction, $map) {
         if (strcmp($direction, "+X") == 0) {                                //If the wall is on the right side.
             if (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
@@ -77,14 +81,40 @@ class TunnelMaker {
                     $currentY = $currentY + 1;
                 }
             } else if (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
-                while (strcmp($map[currentY][$currentX], "|") == 0) {
+                while (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
                     //Testaa törmäys!!!!
                     $map[currentY - 1][$currentX] = ".";
                     $currentY = $currentY - 1;
                 }
             }
         } else if (strcmp($direction, "+Y") == 0) {                         //If the wall is on top of the current tile.
+            if (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
+                while (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
+                    //Testaa törmäys!!!!
+                    $map[$currentY][$currentX + 1] = ".";
+                    $currentX = $currentX + 1;
+                }
+            } else if (strcmp($map[$currentY][$currentX - 1], "|") == 0) {
+                while (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
+                    //Testaa törmäys!!!!
+                    $map[$currentY][$currentX - 1] = ".";
+                    $currentX = $currentX - 1;
+                }
+            }
         } else if (strcmp($direction, "-Y") == 0) {                         //If the wall is under the current tile.
+             if (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
+                while (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
+                    //Testaa törmäys!!!!
+                    $map[$currentY][$currentX + 1] = ".";
+                    $currentX = $currentX + 1;
+                }
+            } else if (strcmp($map[$currentY][$currentX - 1], "|") == 0) {
+                while (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
+                    //Testaa törmäys!!!!
+                    $map[$currentY][$currentX - 1] = ".";
+                    $currentX = $currentX - 1;
+                }
+            }
         }
     }
 
