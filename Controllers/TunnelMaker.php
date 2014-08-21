@@ -34,7 +34,7 @@ class TunnelMaker {
             if ($currentX < $destinationX) {
                 if (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
                     if (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
-                        goAround($currentX, $currentY, "+X");   //Ei valmis vielä
+                        goAround($currentX, $currentY, "+X");
                     }
                 } else {
                     $currentX = $currentX + 1;
