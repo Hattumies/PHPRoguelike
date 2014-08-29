@@ -33,22 +33,32 @@ class TunnelMaker {
         while ($currentX != $destinationX || $currentY != $destinationY) {
             if ($currentX < $destinationX) {
                 if (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
-                    if (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
-                        goAround($currentX, $currentY, "+X");
-                    }
+                    goAround($currentX, $currentY, "+X");
                 } else {
                     $currentX = $currentX + 1;
                     $map[$currentY][$currentX] = ".";
                 }
             } else if ($currentX > $destinationX && strcmp($map[$currentY][$currentX - 1], "|") != 0) {
-                $currentX = $currentX - 1;
-                $map[$currentY][$currentX] = ".";
+                if (strcmp($map[$currentY][$currentX - 1], "|") == 0) {
+                    goAround($currentX, $currentY, "-X");
+                } else {
+                    $currentX = $currentX - 1;
+                    $map[$currentY][$currentX] = ".";
+                }
             } else if ($currentY < $destinationY && strcmp($map[$currentY + 1][$currentX], "|") != 0) {
-                $currentY = $currentY + 1;
-                $map[$currentY][$currentX] = ".";
+                if (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
+                    goAround($currentX, $currentY, "+Y");
+                } else {
+                    $currentY = $currentY + 1;
+                    $map[$currentY][$currentX] = ".";
+                }
             } else if (currentY > $destinationY && strcmp($map[$currentY - 1][$currentX], "|") != 0) {
+                if (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
+                        goAround($currentX, $currentY, "-Y");
+                } else {
                 $currentY = $currentY - 1;
                 $map[$currentY][$currentX] = ".";
+                }
             }
         }
     }
@@ -58,62 +68,27 @@ class TunnelMaker {
      * GoAround() goes around the wall in the direction given by the $direction parameter.
      * +X and -X for rigth and left and +Y and -Y for up and down.
      */
+
     public function goAround(&$currentX, &$currentY, $direction, $map) {
         if (strcmp($direction, "+X") == 0) {                                //If the wall is on the right side.
-            if (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
-                while (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[$currentY + 1][$currentX] = ".";
-                    $currentY = $currentY + 1;
-                }
-            } else if (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
-                while (strcmp($map[currentY][$currentX], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[currentY - 1][$currentX] = ".";
-                    $currentY = $currentY - 1;
-                }
+            while (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
+                $map[$currentY + 1][$currentX] = ".";
+                $currentY = $currentY + 1;
             }
         } else if (strcmp($direction, "-X") == 0) {                         //If the wall is on the left side.
-            if (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
-                while (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[$currentY + 1][$currentX] = ".";
-                    $currentY = $currentY + 1;
-                }
-            } else if (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
-                while (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[currentY - 1][$currentX] = ".";
-                    $currentY = $currentY - 1;
-                }
+            while (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
+                $map[$currentY + 1][$currentX] = ".";
+                $currentY = $currentY + 1;
             }
         } else if (strcmp($direction, "+Y") == 0) {                         //If the wall is on top of the current tile.
-            if (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
-                while (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[$currentY][$currentX + 1] = ".";
-                    $currentX = $currentX + 1;
-                }
-            } else if (strcmp($map[$currentY][$currentX - 1], "|") == 0) {
-                while (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[$currentY][$currentX - 1] = ".";
-                    $currentX = $currentX - 1;
-                }
+            while (strcmp($map[$currentY + 1][$currentX], "|") == 0) {
+                $map[$currentY][$currentX + 1] = ".";
+                $currentX = $currentX + 1;
             }
         } else if (strcmp($direction, "-Y") == 0) {                         //If the wall is under the current tile.
-             if (strcmp($map[$currentY][$currentX + 1], "|") == 0) {
-                while (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[$currentY][$currentX + 1] = ".";
-                    $currentX = $currentX + 1;
-                }
-            } else if (strcmp($map[$currentY][$currentX - 1], "|") == 0) {
-                while (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
-                    //Testaa törmäys!!!!
-                    $map[$currentY][$currentX - 1] = ".";
-                    $currentX = $currentX - 1;
-                }
+            while (strcmp($map[$currentY - 1][$currentX], "|") == 0) {
+                $map[$currentY][$currentX + 1] = ".";
+                $currentX = $currentX + 1;
             }
         }
     }
