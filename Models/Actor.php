@@ -2,16 +2,15 @@
 
 abstract class Actor {
 
-    private static $name;
-    private static $age;
-    private static $gender;
-    private static $race;
-    private static $hpMax;
-    private static $mpMax;
-    private static $hpCurrent;
-    private static $mpCurrent;
+    private $name;
+    private $age;
+    private $gender;
+    private $race;
+    private $hpMax;
+    private $mpMax;
+    private $hpCurrent;
+    private $mpCurrent;
 
-    
     abstract protected function decreaseHpCurrent();
 
     abstract protected function increaseHpCurrent();
@@ -28,68 +27,68 @@ abstract class Actor {
 
     abstract protected function increaseMpMax();
 
-    public static function getName() {
-        return self::$name;
+    public function getName() {
+        return $this->$name;
     }
 
-    public static function getAge() {
-        return self::$age;
+    public function getAge() {
+        return $this->$age;
     }
 
-    public static function getGender() {
-        return self::$gender;
+    public function getGender() {
+        return $this->$gender;
     }
 
-    public static function getRace() {
-        return self::$race;
+    public function getRace() {
+        return $this->$race;
     }
 
-    public static function setName($name) {
-        self::$name = $name;
+    public function setName($name) {
+        $this->$name = $name;
     }
 
-    public static function setAge($age) {
-        self::$age = $age;
+    public function setAge($age) {
+        $this->$age = $age;
     }
 
-    public static function setGender($gender) {
-        self::$gender = $gender;
+    public function setGender($gender) {
+        $this->$gender = $gender;
     }
 
-    public static function setRace($race) {
-        self::$race = $race;
+    public function setRace($race) {
+        $this->$race = $race;
     }
 
-    public static function getHpMax() {
-        return self::$hpMax;
+    public function getHpMax() {
+        return $this->$hpMax;
     }
 
-    public static function getMpMax() {
-        return self::$mpMax;
+    public function getMpMax() {
+        return $this->$mpMax;
     }
 
-    public static function getHpCurrent() {
-        return self::$hpCurrent;
+    public function getHpCurrent() {
+        return $this->$hpCurrent;
     }
 
-    public static function getMpCurrent() {
-        return self::$mpCurrent;
+    public function getMpCurrent() {
+        return $this->$mpCurrent;
     }
 
-    public static function setHpMax($hpMax) {
-        self::$hpMax = $hpMax;
+    public function setHpMax($hpMax) {
+        $this->$hpMax = $hpMax;
     }
 
-    public static function setMpMax($mpMax) {
-        self::$mpMax = $mpMax;
+    public function setMpMax($mpMax) {
+        $this->$mpMax = $mpMax;
     }
 
-    public static function setHpCurrent($hpCurrent) {
-        self::$hpCurrent = $hpCurrent;
+    public function setHpCurrent($hpCurrent) {
+        $this->$hpCurrent = $hpCurrent;
     }
 
-    public static function setMpCurrent($mpCurrent) {
-        self::$mpCurrent = $mpCurrent;
+    public function setMpCurrent($mpCurrent) {
+        $this->$mpCurrent = $mpCurrent;
     }
 
 }
